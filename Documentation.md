@@ -2,7 +2,7 @@
 
 ## 1. Create a Windows Virtual Machine (VM)
 
-Begin by creating a Windows virtual machine. For detailed instructions, refer to the link: [Quick Create Portal](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal).
+ Create a Windows virtual machine. For detailed instructions, refer to the link: [Quick Create Portal](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal).
 
 ## 2. Connect to the Windows VM from your Computer
 
@@ -18,14 +18,12 @@ Establish a connection to the Windows VM from your local computer:
 
 To set up a PostgreSQL database on Azure with the desired configurations, follow these detailed steps:
 
-- Click on "+create a resource", navigate to the services list, select "Database", and then choose the PostgreSQL database option.
-
+- Click on "+create a resource", navigate to the services list, select "Database", and then choose the Azure Database for PostgreSQL option.
 ![Create Resource](images/create-resource.png)
 ![Azure Database](images/search-database.png)
 - Proceed to enter the required information to establish your Database:
    - In the basic settings, select your subscription, pick an existing resource group or make a new one, input a name for your PostgreSQL server, and select a region.
    ![Datase Basic Setting](images/Basic-setting-database.png)
-   
    - For server settings, select a pricing tier (such as Basic, General Purpose, or Memory Optimized), choose a PostgreSQL version, and create a username and password for the server admin. In the compute + storage section, activate the option for geo-redundancy.
    ![Admin Setting](images/admin-setting-database.png)
    ![Compute and storage](images/Compute-storage.png)
@@ -48,7 +46,7 @@ Follow these steps to create a storage account on Azure:
    - Enter a name for the storage account.
    - Choose a location for the storage account.
    - Select the storage performance as standard and redundancy as Geo-redundant storage (GRS).
-![Basic setting of Storage account](images/Basic-setting-storageaccount.png)
+   ![Basic setting of Storage account](images/Basic-setting-storageaccount.png)
 
 - In the Advanced tab, click the checkbox to allow cross-tenant replication. Click on "Review" once it is validated, then click on "Create" to create the storage account.
 ![Advanced setting of Storage account](images/Advance-setting-storageaccount.png)
@@ -68,9 +66,12 @@ Follow these steps to create a storage account on Azure:
 ## 4. Bold BI Installation
 
 - Features to be enabled in IIS to run Bold BI in Windows Server OS. Refer to [Bold BI documentation](https://help.boldbi.com/deploying-bold-bi/deploying-in-windows/installation-and-deployment/).
-- You have the option to download various versions of Bold BI from [here](https://www.boldbi.com/account/downloads). you can download 
+- You have the option to download various versions of Bold BI from [here](https://www.boldbi.com/account/downloads). you can download and install.
 - Follow the steps in the [documentation](https://help.boldbi.com/deploying-bold-bi/deploying-in-windows/installation-and-deployment/) to install the BoldBI web application.
 - For guidance on startup configuration for Bold BI, please refer to the following link: [Help.BoldBI.com](https://help.boldbi.com/application-startup/latest/)
+
+**Note:** During configuration in Advanced mode, make sure to note the names of the three databases.
+
 
 
 ## 5. Create a Snapshot of Virtual Machine
@@ -84,7 +85,7 @@ Follow these steps to create a storage account on Azure:
 - Creating a virtual machine (VM) from a snapshot is similar to creating a normal VM, with the main difference being that you start from an existing snapshot instead of a blank VM template. Here are the steps to follow:
   - Click on the "+Create VM" button.
   - Enter the name of the VM and select the desired storage size.
-  - Allow ports HTTP, HTTPS, and RDP in the inbound rules of the VM's network security group.Select the license type as "Windows Server" when prompted.
+  - Allow ports HTTP, HTTPS, and RDP in the inbound rules of the VM's network security group.Select the license type as "Windows Server" when prompted. At last click on "Review and create."
 
 ## 6.PostgreSQL Backup and Restore in Azure
 
@@ -95,10 +96,27 @@ Follow these steps to create a storage account on Azure:
   - For instructions on restoring a PostgreSQL database in Azure, visit: [Restore Azure Database for PostgreSQL](https://learn.microsoft.com/en-us/azure/backup/restore-azure-database-postgresql-flex).
 
 - Steps to Create a Restored PostgreSQL Database
-  - Go to your original database and click on "Restore" found on the left pane. 
+  - Go to your original database and click on "Restore" icon. 
   - For "Point-in-time-restore," select "Select a custom restore point." Enter your Server name and proceed by clicking on "review and create." After the restoration process, verify that all data from the original database is present in the restored database.
-  ![Databse restoration](images/basic-setting-restore.png)
+  ![Database restoration](images/basic-setting-restore.png)
 
 - Using the Restored Database
   - To use the restored database, you'll need to reset the database on your Virtual Machine. Detailed steps can be found in the following documentation: [Reset Application Database on Windows](https://help.boldbi.com/utilities/bold-bi-command-line-tools/reset-application-database/#windows)
+## 7. DNS Mapping and Binding with Bold BI Application
+
+- Map IP Address to Domain Name
+  - Log in to your domain registrar's website.
+  - Navigate to the DNS management section.
+  - Create an A record that points your domain name to the IP address of your VM.
+
+- Bind the Domain with Bold BI
+    - Open IIS Manager and select "Server Certificates" below the server node.
+    ![IIS server certificates](images/IIS-ServerCertificates.png)
+    - Click on "Open Feature" to import the SSL certificate. Upload the certificate, enter the password, select the certificate store type, and click "OK".
+    ![IIS import certificate](images/IIS-importcertificate.png)
+    - Navigate to your "BoldBIEnterpriseEdition" folder in IIS, then click on "Bindings". Click "Add" and select type as "https". Upload the SSL certificate and click "OK".
+    ![Binding](images/IIS-binding.png)
+    ![Hosting](images/IIS-Hosting.png)
+ 
+    - In the Bold BI Enterprise Edition, go to the right pane. Below the browse website, you can find the domain name you bound. Now you can access the Bold BI application through the domain name.
 
