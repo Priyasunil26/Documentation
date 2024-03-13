@@ -107,8 +107,7 @@
   - Click on 'Review and create' button.
   ![(VM-Disk-Settings](images/Snapshot-Create.png)
   - After creating snapshot of your VM, navigate to your snapshot and create a disk by clicking on "+create disk".Enter the disk name and click Review and create.
-  ![create disk](images/createDisk.png)
-  ![Manage disk](images/managedisk.png)
+  ![create disk](images/createDisk.png)![Manage disk](images/managedisk.png)
   - Creating a virtual machine (VM) from a snapshot is similar to creating a normal VM, with the main difference being that you start from an existing snapshot instead of a blank VM template. Here are the steps to follow:
     - Click on the "+Create VM" button.
     ![Snapshot VM Creation](images/createVM.png)
