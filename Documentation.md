@@ -20,22 +20,22 @@ Establish a connection to the Windows VM from your local Machine:
 - When prompted, enter your credentials (username and password) for the Windows VM.
 - Once connected, you'll see the Windows VM desktop on your Machine.
 
-### 3.Setting up postgreSQL Database
+### 3. Setting up PostgreSQL Database
   #### 1. Setting up PostgreSQL in Windows VM
   To set up a PostgreSQL database in Windows VM follow these detailed steps:
   - Download the [PostgreSQL installer for Windows](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
   - Install PostgreSQL using the installer.
-  - Install PostgreSQL on your Virtual machine by following the steps in the link [Link to install PostgreSQL](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/).
+  - For further guidance, you can refer to the following[Link to install PostgreSQL](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/).
 
- **Instructions:**
-- For installing a MySQL database in a Windows VM, refer to the steps outlined in this [guide](https://dev.mysql.com/doc/refman/8.3/en/windows-installation.html).
-- To install an MS SQL database in Azure, follow the instructions provided in this [guide](https://learn.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16).
+**Instructions:**
+  - For installing a MySQL database in a Windows VM, refer to the steps outlined in this [guide](https://dev.mysql.com/doc/refman/8.3/en/windows-installation.html).
+  - To install an MS SQL database in Azure, follow the instructions provided in this [guide](https://learn.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16).
 
-  #### 2. Setting Up an Azure Database for PostgreSQL (For Managed instance)
+#### 2. Setting Up an Azure Database for PostgreSQL (For Managed instance)
 
   To set up a PostgreSQL database on Azure with the desired configurations, follow these detailed steps:
 
-  - Click on "+create a resource", navigate to the services list, select "Database", and then choose the Azure Database for PostgreSQL option.
+  - Click on "+ create a resource", navigate to the services list, select "Database", and then choose the Azure Database for PostgreSQL option.
   ![Create Resource](images/create-resource.png)
   ![Azure Database](images/search-database.png)
   - Proceed to enter the required information to establish your Database:
@@ -50,15 +50,15 @@ Establish a connection to the Windows VM from your local Machine:
     ![Database overview](images/overview-database.png)
   - For further guidance, you can refer to the following link: [Quickstart: Create an Azure Database for PostgreSQL server in the Azure portal](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/quickstart-create-server-portal)
 
-  **Information:** 
+**Information:** 
   - To create a MySQL database in Azure, follow the instructions in this [link](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/quickstart-create-server-portal).
   - To create a MS SQL database in Azure, follow the instructions in this [link](https://learn.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?view=azuresql&tabs=azure-portal).
 
-### 4. Create a Storage Account and a blob constainer on Azure to store Bold BI Dashboard data (Optional)
+### 4. Create a Storage Account and a blob container on Azure to store Bold BI Dashboard data (Optional)
 
 Follow these steps to create a storage account and a blob container on Azure. If you want to store data on your local machine instead, you can move on to the next step.
 
--  Click on "Create a resource" in the Azure portal, then search for "Storage account" and select it.
+-  Click on "+ create a resource" in the Azure portal, then search for "Storage account" and select it.
 ![Create Resource](images/create-resource.png)
 ![Search Storage account](images/search-storageaccount.png)
 - Configure the basic settings:
@@ -89,8 +89,6 @@ Follow these steps to create a storage account and a blob container on Azure. If
 - Follow the steps in the [documentation](https://help.boldbi.com/deploying-bold-bi/deploying-in-windows/installation-and-deployment/) to install the BoldBI web application.
 - For guidance on startup configuration for Bold BI, please refer to the following link: [Help.BoldBI.com](https://help.boldbi.com/application-startup/latest/)
 
-**Note:** During configuration in Advanced mode, make sure to note the names of the three databases.
-
 ### 6. DNS Mapping and Binding with Bold BI Application
 
 - Map IP Address to Domain Name
@@ -115,15 +113,15 @@ Follow these steps to create a storage account and a blob container on Azure. If
 
 - Navigate to the Disk in Windows VM and click the disk.
 ![VM-Disk-Settings ](images/VM-Disk-Settings.png)
-- Click on '+ Create snapshot' in the disk settings to create a snapshot of your Virtual Machine.
+- Click on '+ create snapshot' in the disk settings to create a snapshot of your Virtual Machine.
 ![create snap](images/createSnap.png)
 - Enter the Snapshot name and change the snapshot type to full or incremental.
 - Click on 'Review and create' button.
 ![(VM-Disk-Settings](images/Snapshot-Create.png)
-- After creating snapshot of your VM, navigate to your snapshot and create a disk by clicking on "+create disk".Enter the disk name and click Review and create.
+- After creating snapshot of your VM, navigate to your snapshot and create a disk by clicking on "+ create disk".Enter the disk name and click Review and create.
 ![create disk](images/createDisk.png)![Manage disk](images/managedisk.png)
 - Creating a virtual machine (VM) from a snapshot is similar to creating a normal VM, with the main difference being that you start from an existing snapshot instead of a blank VM template. Here are the steps to follow:
-  - Click on the "+Create VM" button.
+  - Click on the "+ Create VM" button.
   ![Snapshot VM Creation](images/createVM.png)
   - Enter the name of the VM and select the desired storage size.
   - Allow ports HTTP, HTTPS, and RDP in the inbound rules of the VM's network security group.Select the license type as "Windows Server" when prompted. At last click on "Review and create."
@@ -154,12 +152,12 @@ Follow these steps to create a storage account and a blob container on Azure. If
 
 ## 4. Reset the Connection string to use restored PostgreSQL Database
 
-- If you selected Simple mode during startup configuration, there will be a single database; if you selected Advance mode, there will be three databases. For later use, write down the database name.
+- If you configured the database in Simple mode during startup configuration, there will be a single database or if you configured in Advance mode, there will be three databases which can be used at different locations.
 - To use the restored database, you'll need to reset the database on your Virtual Machine.
     Detailed steps can be found in the following documentation: [Reset Application Database on Windows](https://help.boldbi.com/utilities/bold-bi-command-line-tools/reset-application-database/#windows)
 
     **Note:** If you selected the Advance method in the startup configuration, when resetting the database, enter the Bold ID database name as the database name.
-- If you encounter issues with the Bold BI application after resetting, navigate to http://localhost:56573/ums/sites. Then, click on the three dots and select "Edit."
+- If you encounter issues with the Bold BI application after resetting, navigate to http://localhost:56573/ums/sites. Then, click on the three dots on the right and select "Edit".
 ![edit sites](images/editsites.png)
 - In the "Select Database" section, update the database name to match your server database, then click "Update."
 ![server DB](images/serverdb.png)
