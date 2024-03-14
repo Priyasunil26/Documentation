@@ -76,17 +76,17 @@ Follow these steps to create a storage account and a blob container on Azure. If
   - Navigate to your storage account.
   - In the left menu, scroll down to the Data storage section and select Containers.
   - Click the + Container button.
-  - Provide a name for your new container. Remember that the container name must be lowercase, start with a letter or number, and can include only letters, numbers, and the dash (-) character. The name should also be between 3 and 63 characters long.
-  - Set the Anonymous access level for the container (recommended: Private).
+  - Provide a name for your new container.
+  - Set the Anonymous access level for the container (recommended: Private) and then click on "create" button.
   ![Blob creation](images/container-storageaccount.png)
 
 - For detailed instructions, you can refer to the following link: [Create an Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
 
 ### 5. Bold BI Installation
 
-- Features to be enabled in IIS to run Bold BI in Windows Server OS. Refer to [Bold BI documentation](https://help.boldbi.com/deploying-bold-bi/deploying-in-windows/installation-and-deployment/).
+- Features to be enabled in IIS to run Bold BI in Windows Server OS. Refer to this [link](https://help.boldbi.com/faq/features-needed-to-enable-in-iis-to-run-bold-bi-in-win-server-os/).
 - You have the option to download various versions of Bold BI from [here](https://www.boldbi.com/account/downloads). you can download and install.
-- Follow the steps in the [documentation](https://help.boldbi.com/deploying-bold-bi/deploying-in-windows/installation-and-deployment/) to install the BoldBI web application.
+- Follow the steps in the [Bold BI documentation](https://help.boldbi.com/deploying-bold-bi/deploying-in-windows/installation-and-deployment/) to install the BoldBI web application.
 - For guidance on startup configuration for Bold BI, please refer to the following link: [Help.BoldBI.com](https://help.boldbi.com/application-startup/latest/)
 
 ### 6. DNS Mapping and Binding with Bold BI Application
@@ -143,20 +143,21 @@ Follow these steps to create a storage account and a blob container on Azure. If
 
 ### 3. Storage blob container backup and restore
 - Create a Blob container Backup
-  - To learn how to back up a PostgreSQL database in Azure, visit: [Backup Azure Database for PostgreSQL](https://learn.microsoft.com/en-us/azure/backup/blob-backup-configure-manage).
+  - To learn how to back up a  Storage blob container in Azure, visit: [Backup Storage blob container](https://learn.microsoft.com/en-us/azure/backup/blob-backup-configure-manage).
 
 - Restore a Blob container 
-  - For instructions on restoring a PostgreSQL database in Azure, visit: [Restore Azure Database for PostgreSQL](https://learn.microsoft.com/en-us/azure/backup/blob-restore).
+  - For instructions on restoring a Storage blob container in Azure, visit: [Restore Storage blob container](https://learn.microsoft.com/en-us/azure/backup/blob-restore).
 
 **Note:** Before restoring the blob container, ensure you have a target storage account created in advance.
 
 ## 4. Reset the Connection string to use restored PostgreSQL Database
 
-- If you configured the database in Simple mode during startup configuration, there will be a single database or if you configured in Advance mode, there will be three databases which can be used at different locations.
 - To use the restored database, you'll need to reset the database on your Virtual Machine.
     Detailed steps can be found in the following documentation: [Reset Application Database on Windows](https://help.boldbi.com/utilities/bold-bi-command-line-tools/reset-application-database/#windows)
 
-    **Note:** If you selected the Advance method in the startup configuration, when resetting the database, enter the Bold ID database name as the database name.
+    **Note:** 
+    -In the Advance mode configuration,there are three database. when resetting, enter the Bold ID database name as the database name.
+    - In the Simple mode configuration, there is only one database. When resetting, enter the name of that database
 - If you encounter issues with the Bold BI application after resetting, navigate to http://localhost:56573/ums/sites. Then, click on the three dots on the right and select "Edit".
 ![edit sites](images/editsites.png)
 - In the "Select Database" section, update the database name to match your server database, then click "Update."
