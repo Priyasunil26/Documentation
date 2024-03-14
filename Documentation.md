@@ -21,7 +21,8 @@ Establish a connection to the Windows VM from your local Machine:
 - Once connected, you'll see the Windows VM desktop on your Machine.
 
 ### 3. Setting up PostgreSQL Database
-  #### 1. Setting up PostgreSQL in Windows VM
+ If you want to set up a PostgreSQL database on a Windows VM, follow the first step. If you prefer using a managed database in Azure, follow the second step.
+  #### a. Setting up PostgreSQL in Windows VM
   To set up a PostgreSQL database in Windows VM follow these detailed steps:
   - Download the [PostgreSQL installer for Windows](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
   - Install PostgreSQL using the installer.
@@ -31,7 +32,7 @@ Establish a connection to the Windows VM from your local Machine:
   - For installing a MySQL database in a Windows VM, refer to the steps outlined in this [guide](https://dev.mysql.com/doc/refman/8.3/en/windows-installation.html).
   - To install an MS SQL database in Azure, follow the instructions provided in this [guide](https://learn.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16).
 
-#### 2. Setting Up an Azure Database for PostgreSQL (For Managed instance)
+#### b. Setting Up an Azure Database for PostgreSQL (For Managed instance)
 
   To set up a PostgreSQL database on Azure with the desired configurations, follow these detailed steps:
 
