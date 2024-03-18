@@ -108,9 +108,9 @@ Follow these steps to create a storage account and a blob container on Azure. If
 
     - In the Bold BI Enterprise Edition, go to the right pane. Below the browse website, you can find the domain name you bound. Now you can access the Bold BI application through the domain name.
 
-**Note**
+**Note:**
 
-    If you are configuring DNS mapping for your virtual machine (VM), it's important to also map the snapshot of your VM. 
+  If you are configuring DNS mapping for your virtual machine (VM), it's important to also map the snapshot of your VM. 
 
 ## To Enable Backup compatibility of Bold BI application
 
