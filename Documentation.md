@@ -108,6 +108,10 @@ Follow these steps to create a storage account and a blob container on Azure. If
 
     - In the Bold BI Enterprise Edition, go to the right pane. Below the browse website, you can find the domain name you bound. Now you can access the Bold BI application through the domain name.
 
+**Note**
+
+    If you are configuring DNS mapping for your virtual machine (VM), it's important to also map the snapshot of your VM. 
+
 ## To Enable Backup compatibility of Bold BI application
 
 ### 1. Create a Snapshot of Virtual Machine
@@ -154,11 +158,12 @@ Follow these steps to create a storage account and a blob container on Azure. If
 ## 4. Reset the Connection string to use restored PostgreSQL Database
 
 - To use the restored database, you'll need to reset the database on your Virtual Machine.
-    Detailed steps can be found in the following documentation: [Reset Application Database on Windows](https://help.boldbi.com/utilities/bold-bi-command-line-tools/reset-application-database/#windows)
+Detailed steps can be found in the following documentation: [Reset Application Database on Windows](https://help.boldbi.com/utilities/bold-bi-command-line-tools/reset-application-database/#windows)
 
-    **Note:** 
-    - In the Advance mode configuration,there are three database. when resetting, enter the Bold ID database name as the database name.
-    - In the Simple mode configuration, there is only one database. When resetting, enter the name of that database
+  **Note:** 
+  - In the Advance mode configuration,there are three database. when resetting, enter the Bold ID database name as the database name.
+  - In the Simple mode configuration, there is only one database. When resetting, enter the name of that database
+
 - If you encounter issues with the Bold BI application after resetting, navigate to http://localhost:56573/ums/sites. Then, click on the three dots on the right and select "Edit".
 ![edit sites](images/editsites.png)
 - In the "Select Database" section, update the database name to match your server database, then click "Update."
